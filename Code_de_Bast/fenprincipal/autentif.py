@@ -14,6 +14,8 @@ class AutentWindow(QMainWindow):
         self.login_button = QPushButton("Se connecter", self)
         self.signup_button = QPushButton("S'inscrire", self)
 
+        self.setStyleSheet("background-color :lightgreen")
+
 
 
         # Création des layouts

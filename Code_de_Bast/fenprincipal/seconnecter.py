@@ -23,6 +23,8 @@ class LoginWindow(QMainWindow):
 
         #self.login_button.clicked.connect(self.login_done)
 
+        self.setStyleSheet("background-color :lightgreen")
+
 
         v_layout = QVBoxLayout()
         v_layout.addWidget(self.email_label)

@@ -21,6 +21,8 @@ class WelcomeWindow(QMainWindow):
         #self.stats_button.clicked.connect(self.show_stats_window)
         #self.logout_button.clicked.connect(self.logout)
 
+        self.setStyleSheet("background-color :orange")
+
         # Création du layout
         v_layout = QVBoxLayout()
         v_layout.addWidget(self.bike_button)

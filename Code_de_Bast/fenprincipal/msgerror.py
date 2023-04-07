@@ -12,7 +12,7 @@ class InfoWindow(QMainWindow):
         self.message_label = QLabel(message, self)
         self.message_label.move(20, 20)
         self.message_label.resize(300, 50)
-
+        self.setStyleSheet("background-color :darkgreen")
         # Bouton OK
         self.ok_button = QPushButton("OK", self)
         self.ok_button.move(120, 80)

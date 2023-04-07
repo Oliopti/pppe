@@ -45,6 +45,8 @@ class AdminSpace(QMainWindow):
 
         self.btn_deconnexion = QPushButton("Se déconnecter", self)
         self.btn_deconnexion.setGeometry(380, 400, 120, 30)
+
+        self.setStyleSheet("background-color :lightblue")
         #self.btn_faire_velo.clicked.connect(self.ouvrir_fenetre_velo)
         #self.btn_deconnexion.clicked.connect(self.deconnecter)
 

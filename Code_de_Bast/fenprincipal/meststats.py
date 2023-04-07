@@ -49,6 +49,7 @@ class StatWindow(QMainWindow):
         self.back_button = QPushButton("Retour", self)
         #back_button.clicked.connect(self.close)
         self.back_button.setGeometry(300, 550, 120, 30)
+        self.setStyleSheet("background-color :pink")
 
 
 

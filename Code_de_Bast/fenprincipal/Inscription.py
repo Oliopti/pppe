@@ -31,6 +31,8 @@ class SignupWindow(QMainWindow):
         self.signup_button = QPushButton("Je m'inscris", self)
         #self.signup_button.clicked.connect(self.signup_done)
 
+        self.setStyleSheet("background-color :lightgreen")
+
         # Création du layout vertical
         v_layout = QVBoxLayout()
         v_layout.addWidget(self.name_label)

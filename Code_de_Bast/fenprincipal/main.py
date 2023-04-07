@@ -34,7 +34,7 @@ class Manager :
         self.autentwindow.login_button.clicked.connect(self.login)#quand on clique sur se connecter sur la page autentif
         self.autentwindow.show() # Fenetre à afficher en 1er
 
-        self.loginwindow.login_button.clicked.connect(self.bdd_connexion) #quand on clique sur se connecter dans la page se connecter
+        self.loginwindow.login_button.clicked.connect(self.espaceadmin) #quand on clique sur se connecter dans la page se connecter
         self.signupwindow.signup_button.clicked.connect(self.bdd_inscription)  #quand on clique sur s'inscrire quand on est sur la page d'inscription
         self.superwindow.button.clicked.connect(self.backtopageauto) #quand on clique sur ok quand on est sur le msg de confirmation
         self.welcomewindow.bike_button.clicked.connect(self.velo) #quand on clique sur faire du velo quand on est la page d'accueil
@@ -74,7 +74,7 @@ class Manager :
         email = self.loginwindow.email_edit.text()
         password = self.loginwindow.password_edit.text()
 
-        if email == "admin" and password == "admin":
+        if email == "adminpppe@gmail.com" and password == "admin123":
             self.loginwindow.close()
 
             self.adminspace.show()
@@ -204,27 +204,32 @@ class Manager :
             #print("Connected to MySQL Server version", db_Info)
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
-            query = f"SELECT email, mdp FROM utilisateur WHERE email = '{email}' AND mdp = password({password})" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
+            query = f"SELECT role, prenom FROM utilisateur WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
             print(query)
             mycursor.execute(query)
 
             result = mycursor.fetchone()
-            if result:
-                # Les informations sont correctes, ouverture de la fenêtre principale
-                self.loginwindow.close()
-                self.welcomewindow.show()
-
-            else:
-                # Les informations sont incorrectes, ouverture de la fenêtre d'erreur
-                self.infowindow.show()
-
             mycursor.close()
             mydb.close()
-
-
+            return result
 
         except Error as e:
             print("Error while connecting to MySQL", e)
+
+    def espaceadmin(self): #bascule vers la page admin
+        resultat_login = self.bdd_connexion()
+
+        if resultat_login[0]==2:
+            self.loginwindow.close()
+            self.welcomewindow.show()
+        elif resultat_login[0]==1:
+            self.loginwindow.close()
+            self.adminspace.show()
+        else:
+            self.infowindow.show()
+
+
+
 
 
 

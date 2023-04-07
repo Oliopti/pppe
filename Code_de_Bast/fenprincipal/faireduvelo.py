@@ -22,6 +22,8 @@ class FenetreVelo(QMainWindow):
         self.bouton_retour.move(90, 200)
         #self.bouton_retour.clicked.connect(self.retour_accueil)
 
+        self.setStyleSheet("background-color :brown")
+
 
 
     #def retour_accueil(self):

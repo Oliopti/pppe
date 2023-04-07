@@ -15,6 +15,8 @@ class SuperWindow(QDialog):
         # Connecter le bouton à la fermeture de la fenêtre
         self.button.clicked.connect(self.close)
 
+        self.setStyleSheet("background-color :pink")
+
 
 
 
