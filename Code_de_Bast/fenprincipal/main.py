@@ -218,15 +218,15 @@ class Manager :
 
     def espaceadmin(self): #bascule vers la page admin
         resultat_login = self.bdd_connexion()
-
-        if resultat_login[0]==2:
+        if resultat_login==None :
+            self.infowindow.show()
+        elif len(resultat_login)>0 and resultat_login[0]==2:
             self.loginwindow.close()
             self.welcomewindow.show()
-        elif resultat_login[0]==1:
+        elif len(resultat_login)>0 and resultat_login[0]==1:
             self.loginwindow.close()
             self.adminspace.show()
-        else:
-            self.infowindow.show()
+
 
 
 
