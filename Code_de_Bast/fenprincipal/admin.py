@@ -49,7 +49,9 @@ class AdminSpace(QMainWindow):
         # Combo box
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(20, 400, 150, 30)
-        self.combo_box.addItems(["Ce mois-ci", "Cette semaine", "Ce mois", "Cette année"])# choisir la période
+        self.combo_box.addItems(["Cette semaine", "Ce mois", "Cette année"])# choisir la période
+
+
 
         # Buttons
         self.btn_accueil = QPushButton("Aller à l'accueil", self) # retour à la page d'accueil
