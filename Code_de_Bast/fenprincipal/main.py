@@ -205,7 +205,6 @@ class Manager :
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
             query = f"SELECT role, prenom FROM utilisateur WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
-            print(query)
             mycursor.execute(query)
 
             result = mycursor.fetchone()
@@ -220,10 +219,10 @@ class Manager :
         resultat_login = self.bdd_connexion() #se connecte à la BDD
         if resultat_login==None : #si role est introuvable
             self.infowindow.show()
-        elif len(resultat_login)>0 and resultat_login[0]==2: # si role est trouvable et correspond à 2 (role utilisateur)
+        elif len(resultat_login)>0 and resultat_login[0]==2: # renvoie le resultat et voit si role est trouvable et correspond à 2 (role utilisateur)
             self.loginwindow.close()
             self.welcomewindow.show()
-        elif len(resultat_login)>0 and resultat_login[0]==1: # si role est trouvable et correspond à 1 (role admin)
+        elif len(resultat_login)>0 and resultat_login[0]==1: # renvoie le resultat et voit si role est trouvable et correspond à 1 (role admin)
             self.loginwindow.close()
             self.adminspace.show()
 
