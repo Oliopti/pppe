@@ -217,13 +217,13 @@ class Manager :
             print("Error while connecting to MySQL", e)
 
     def espaceadmin(self): #bascule vers la page admin
-        resultat_login = self.bdd_connexion()
-        if resultat_login==None :
+        resultat_login = self.bdd_connexion() #se connecte à la BDD
+        if resultat_login==None : #si role est introuvable
             self.infowindow.show()
-        elif len(resultat_login)>0 and resultat_login[0]==2:
+        elif len(resultat_login)>0 and resultat_login[0]==2: # si role est trouvable et correspond à 2(role utilisateur)
             self.loginwindow.close()
             self.welcomewindow.show()
-        elif len(resultat_login)>0 and resultat_login[0]==1:
+        elif len(resultat_login)>0 and resultat_login[0]==1: # si role est trouvable et correspond à 1 (role admin)
             self.loginwindow.close()
             self.adminspace.show()
 
