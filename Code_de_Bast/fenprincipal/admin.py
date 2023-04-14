@@ -50,19 +50,49 @@ class AdminSpace(QMainWindow):
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(20, 400, 150, 30)
         self.combo_box.addItems(["Cette semaine", "Ce mois", "Cette année"])# choisir la période
-
-
-
+        self.combo_box = QComboBox(self)
+        self.combo_box.setGeometry(20, 400, 150, 30)
+        self.combo_box.addItems(["Cette semaine", "Ce mois", "Cette année"])# choisir la période
+        self.combo_box.currentIndexChanged.connect(self.on_combobox_changed)
         # Buttons
-        self.btn_accueil = QPushButton("Aller à l'accueil", self) # retour à la page d'accueil
+        self.btn_accueil = QPushButton("Aller à l'accueil", self)  # retour à la page d'accueil
         self.btn_accueil.setGeometry(240, 400, 120, 30)
 
-        self.btn_deconnexion = QPushButton("Se déconnecter", self) # se deconnecte du service
+        self.btn_deconnexion = QPushButton("Se déconnecter", self)  # se deconnecte du service
         self.btn_deconnexion.setGeometry(380, 400, 120, 30)
 
-        self.setStyleSheet("background-color :lightblue") #couleur de fond (ici bleu claire)
-        #self.btn_faire_velo.clicked.connect(self.ouvrir_fenetre_velo)
-        #self.btn_deconnexion.clicked.connect(self.deconnecter)
+        self.setStyleSheet("background-color :lightblue")  # couleur de fond (ici bleu claire)
+        # self.btn_faire_velo.clicked.connect(self.ouvrir_fenetre_velo)
+        # self.btn_deconnexion.clicked.connect(self.deconnecter)
+
+    def on_combobox_changed(self, index):
+        # Récupérez la valeur sélectionner dans le combobox
+        value = self.combo_box.currentText()
+        print(f"Valeur sélectionner : {value}")  #Le f dans les chaînes de caractères (strings) en Python est un préfixe pour indiquer que la chaîne de caractères est une "f-string".
+        # Une f-string est une chaîne de caractères spéciale qui permet d'insérer des expressions Python à l'intérieur des chaînes de caractères en utilisant la syntaxe {expression}.
+        try:
+            mydb = mysql.connector.connect(
+                host="172.20.10.1",
+                user="bastien",
+                password="123456",
+                database="pppe"
+            )
+            print("Try to connected to MySQL Server")
+            mycursor = mydb.cursor()
+            demande = f"SELECT datetime_fin, nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session"
+            print (demande)
+            mycursor.execute(demande)
+            result = mycursor.fetchall()
+            mycursor.close()
+            mydb.close()
+            return result
+
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+
+
+
 
     def cherche_donne(self):
         try:
@@ -92,6 +122,7 @@ class AdminSpace(QMainWindow):
 
     def tableau_admin(self): #bascule vers la page admin
         tabl_result = self.cherche_donne() #se connecte à la BDD
+
         if tabl_result==1 : #si role est introuvable
             """self.infowindow.show()
         elif len(resultat_login)>0 and resultat_login[0]==2: # si role est trouvable et correspond à 2 (role utilisateur)
