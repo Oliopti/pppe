@@ -53,7 +53,7 @@ class AdminSpace(QMainWindow):
         self.combo_box = QComboBox(self)
         self.combo_box.setGeometry(20, 400, 150, 30)
         self.combo_box.addItems(["Cette semaine", "Ce mois", "Cette année"])# choisir la période
-        self.combo_box.currentIndexChanged.connect(self.on_combobox_changed)
+        self.combo_box.currentIndexChanged.connect(self.remplir_tab)
         # Buttons
         self.btn_accueil = QPushButton("Aller à l'accueil", self)  # retour à la page d'accueil
         self.btn_accueil.setGeometry(240, 400, 120, 30)
@@ -65,31 +65,115 @@ class AdminSpace(QMainWindow):
         # self.btn_faire_velo.clicked.connect(self.ouvrir_fenetre_velo)
         # self.btn_deconnexion.clicked.connect(self.deconnecter)
 
-    def on_combobox_changed(self, index):
-        # Récupérez la valeur sélectionner dans le combobox
+
+
+    def remplir_tab(self):
         value = self.combo_box.currentText()
-        print(f"Valeur sélectionner : {value}")  #Le f dans les chaînes de caractères (strings) en Python est un préfixe pour indiquer que la chaîne de caractères est une "f-string".
-        # Une f-string est une chaîne de caractères spéciale qui permet d'insérer des expressions Python à l'intérieur des chaînes de caractères en utilisant la syntaxe {expression}.
-        try:
-            mydb = mysql.connector.connect(
-                host="172.20.10.1",
-                user="bastien",
-                password="123456",
-                database="pppe"
-            )
-            print("Try to connected to MySQL Server")
-            mycursor = mydb.cursor()
-            demande = f"SELECT datetime_fin, nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session"
-            print (demande)
-            mycursor.execute(demande)
-            result = mycursor.fetchall()
-            mycursor.close()
-            mydb.close()
-            return result
+        if value == "Cette semaine" :
+            try:
+                mydb = mysql.connector.connect(
+                    host="172.20.10.1",
+                    user="bastien",
+                    password="123456",
+                    database="pppe"
+                )
+                print("Try to connected to MySQL Server")
+                mycursor = mydb.cursor()
+                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin >= now() "
+                print(demande)
+                mycursor.execute(demande)
+                result = mycursor.fetchall()
+                data=[]
+                for row in result:
+                    data.append({"user": row[0], "last_conn": row[1], "nb_conn": row[2], "energy": row[3], "reg_date": row[4]})
+                mycursor.close()
+                mydb.close()
+
+                self.tableWidget.setRowCount(len(data))
+                for i, row in enumerate(data):  # renvoie les données data
+                    self.tableWidget.setItem(i, 0, QTableWidgetItem(row["user"]))  # nom de la colonne0
+                    self.tableWidget.setItem(i, 1, QTableWidgetItem(row["last_conn"]))  # nom de la colonne 1
+                    self.tableWidget.setItem(i, 2, QTableWidgetItem(row["nb_conn"]))  # etc
+                    self.tableWidget.setItem(i, 3, QTableWidgetItem(row["energy"]))
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem(row["reg_date"]))
+                    combo_box = QComboBox()
+                    combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur",
+                                        "Réinitialiser stats"])  # choisir entre differentes option pour gerer utilisateur
+                    self.tableWidget.setCellWidget(i, 5, combo_box)  # colonne gerere
+
+            except Error as e:
+                print("Error while connecting to MySQL", e)
+
+        elif value == "Ce mois" :
+            try:
+                mydb = mysql.connector.connect(
+                    host="172.20.10.1",
+                    user="bastien",
+                    password="123456",
+                    database="pppe"
+                )
+                print("Try to connected to MySQL Server")
+                mycursor = mydb.cursor()
+                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin >= MONTH() - 1 "
+                print(demande)
+                mycursor.execute(demande)
+                result = mycursor.fetchall()
+                data=[]
+                for row in result:
+                    data.append({"user": row[0], "last_conn": row[1], "nb_conn": row[2], "energy": row[3], "reg_date": row[4]})
+                mycursor.close()
+                mydb.close()
+
+                self.tableWidget.setRowCount(len(data))
+                for i, row in enumerate(data):  # renvoie les données data
+                    self.tableWidget.setItem(i, 0, QTableWidgetItem(row["user"]))  # nom de la colonne0
+                    self.tableWidget.setItem(i, 1, QTableWidgetItem(row["last_conn"]))  # nom de la colonne 1
+                    self.tableWidget.setItem(i, 2, QTableWidgetItem(row["nb_conn"]))  # etc
+                    self.tableWidget.setItem(i, 3, QTableWidgetItem(row["energy"]))
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem(row["reg_date"]))
+                    combo_box = QComboBox()
+                    combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur", "Réinitialiser stats"])  # choisir entre differentes option pour gerer utilisateur
+                    self.tableWidget.setCellWidget(i, 5, combo_box)  # colonne gerere
+
+            except Error as e:
+                print("Error while connecting to MySQL", e)
 
 
-        except Error as e:
-            print("Error while connecting to MySQL", e)
+        elif value == "Cette année" :
+            try:
+                mydb = mysql.connector.connect(
+                    host="172.20.10.1",
+                    user="bastien",
+                    password="123456",
+                    database="pppe"
+                )
+                print("Try to connected to MySQL Server")
+                mycursor = mydb.cursor()
+                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin = YEAR() - 1 "
+                print(demande)
+                mycursor.execute(demande)
+                result = mycursor.fetchall()
+                data=[]
+                for row in result:
+                    data.append({"user": row[0], "last_conn": row[1], "nb_conn": row[2], "energy": row[3], "reg_date": row[4]})
+                mycursor.close()
+                mydb.close()
+
+                self.tableWidget.setRowCount(len(data))
+                for i, row in enumerate(data):  # renvoie les données data
+                    self.tableWidget.setItem(i, 0, QTableWidgetItem(row["user"]))  # nom de la colonne0
+                    self.tableWidget.setItem(i, 1, QTableWidgetItem(row["last_conn"]))  # nom de la colonne 1
+                    self.tableWidget.setItem(i, 2, QTableWidgetItem(row["nb_conn"]))  # etc
+                    self.tableWidget.setItem(i, 3, QTableWidgetItem(row["energy"]))
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem(row["reg_date"]))
+                    combo_box = QComboBox()
+                    combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur",
+                                        "Réinitialiser stats"])  # choisir entre differentes option pour gerer utilisateur
+                    self.tableWidget.setCellWidget(i, 5, combo_box)  # colonne gerere
+
+            except Error as e:
+                print("Error while connecting to MySQL", e)
+       # else :
 
 
 
