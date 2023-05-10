@@ -67,7 +67,7 @@ class AdminSpace(QMainWindow):
 
 
 
-    def remplir_tab(self):
+    def remplir_tab(self): #combo box cette semaine
         value = self.combo_box.currentText()
         if value == "Cette semaine" :
             try:
@@ -104,7 +104,7 @@ class AdminSpace(QMainWindow):
             except Error as e:
                 print("Error while connecting to MySQL", e)
 
-        elif value == "Ce mois" :
+        elif value == "Ce mois" : #combo box ce mois
             try:
                 mydb = mysql.connector.connect(
                     host="172.20.10.1",
@@ -114,7 +114,7 @@ class AdminSpace(QMainWindow):
                 )
                 print("Try to connected to MySQL Server")
                 mycursor = mydb.cursor()
-                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin >= MONTH() - 1 "
+                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin >= MONTH() "
                 print(demande)
                 mycursor.execute(demande)
                 result = mycursor.fetchall()
@@ -139,7 +139,7 @@ class AdminSpace(QMainWindow):
                 print("Error while connecting to MySQL", e)
 
 
-        elif value == "Cette année" :
+        elif value == "Cette année" : #combo box cette année
             try:
                 mydb = mysql.connector.connect(
                     host="172.20.10.1",
@@ -149,7 +149,7 @@ class AdminSpace(QMainWindow):
                 )
                 print("Try to connected to MySQL Server")
                 mycursor = mydb.cursor()
-                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin = YEAR() - 1 "
+                demande = f"SELECT nombre_connexion, mesures FROM session, releve_puissance WHERE session.id = releve_puissance.id_session AND session.datetime_fin = YEAR() "
                 print(demande)
                 mycursor.execute(demande)
                 result = mycursor.fetchall()
@@ -178,7 +178,7 @@ class AdminSpace(QMainWindow):
 
 
 
-    def cherche_donne(self):
+    def cherche_donne(self): #COLONNE email du tableau
         try:
             mydb = mysql.connector.connect(
                 host="172.20.10.1",
@@ -202,6 +202,32 @@ class AdminSpace(QMainWindow):
 
         except Error as e:
             print("Error while connecting to MySQL", e)
+
+    def session(self):
+        try:
+            mydb = mysql.connector.connect(
+                host="172.20.10.1",
+                user="bastien",
+                password="123456",
+                database="pppe"
+            )
+            print("Try to connected to MySQL Server")
+           # db_Info = connection.get_server_info()
+            #print("Connected to MySQL Server version", db_Info)
+            # Insertion des données dans la table "utilisateur"
+            mycursor = mydb.cursor()
+            query = f"SELECT email FROM utilisateur" #WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
+            mycursor.execute(query)
+
+            result = mycursor.fetchall()
+            print (result)
+            mycursor.close()
+            mydb.close()
+            return result
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+
 
 
     def tableau_admin(self): #bascule vers la page admin

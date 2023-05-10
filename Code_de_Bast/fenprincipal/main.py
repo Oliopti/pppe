@@ -132,6 +132,7 @@ class Manager :
 
     def deco(self): #rebascule vers la page d'autentification quand on est sur la page d'accueil
         self.welcomewindow.close()
+        self.session_fini()
         self.autentwindow.show()
 
     def adminvelo(self):# rebascule vers la page d'acceuil quand on est sur la page d'admin
@@ -140,6 +141,7 @@ class Manager :
 
     def admindeco(self):#rebascule vers la page d'autentification quand on est sur la page d'admin
         self.adminspace.close()
+        self.session_fini()
         self.autentwindow.show()
 
     def error(self): #rebascule vers la page de connexion par appuis du bouton "OK" sur le msg d'erreur
@@ -204,7 +206,7 @@ class Manager :
             #print("Connected to MySQL Server version", db_Info)
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
-            query = f"SELECT role, prenom FROM utilisateur WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
+            query = f"SELECT role, prenom, id FROM utilisateur WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
             mycursor.execute(query)
 
             result = mycursor.fetchone()
@@ -215,16 +217,72 @@ class Manager :
         except Error as e:
             print("Error while connecting to MySQL", e)
 
+    def session(self, resultat):
+        try:
+            mydb = mysql.connector.connect(
+                host="172.20.10.1",
+                user="bastien",
+                password="123456",
+                database="pppe"
+            )
+            print("Try to connected to MySQL Server")
+           # db_Info = connection.get_server_info()
+            #print("Connected to MySQL Server version", db_Info)
+            # Insertion des données dans la table "utilisateur"
+
+            mycursor = mydb.cursor()
+            query = f"INSERT INTO pppe.session (id_user) VALUES ({resultat[2]});"
+            mycursor.execute(query)
+            mydb.commit()
+
+            mycursor.close()
+            mydb.close()
+            print(query)
+
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+    def session_fini(self):
+        try:
+            mydb = mysql.connector.connect(
+                host="172.20.10.1",
+                user="bastien",
+                password="123456",
+                database="pppe"
+            )
+            print("Try to connected to MySQL Server")
+           # db_Info = connection.get_server_info()
+            #print("Connected to MySQL Server version", db_Info)
+            # Insertion des données dans la table "utilisateur"
+
+            mycursor = mydb.cursor()
+            query = f"UPDATE session set datetime_fin = NOW() WHERE datetime_debut = datetime_fin;"
+            mycursor.execute(query)
+            mydb.commit()
+
+            mycursor.close()
+            mydb.close()
+            print(query)
+
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+
     def espaceadmin(self): #bascule vers la page admin
         resultat_login = self.bdd_connexion() #se connecte à la BDD
         if resultat_login==None : #si role est introuvable
             self.infowindow.show()
         elif len(resultat_login)>0 and resultat_login[0]==2: # renvoie le resultat et voit si role est trouvable et correspond à 2 (role utilisateur)
+            self.session(resultat_login)
             self.loginwindow.close()
             self.welcomewindow.show()
+
+
         elif len(resultat_login)>0 and resultat_login[0]==1: # renvoie le resultat et voit si role est trouvable et correspond à 1 (role admin)
+            self.session(resultat_login)
             self.loginwindow.close()
             self.adminspace.show()
+
 
 
 
