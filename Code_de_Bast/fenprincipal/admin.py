@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButto
 from autentif import AutentWindow
 import mariadb
 import mysql.connector
+from datetime import datetime
 from mysql.connector import Error
 
 
@@ -25,8 +26,8 @@ class AdminSpace(QMainWindow):
         donne = self.cherche_donne()
         data = []
         for utilisateur in donne:
-            data.append({"user": utilisateur[0], "last_conn": "20/01/2023", "nb_conn": "15", "energy": "1200", "reg_date": "18/01/2023"})
-
+            data.append({"user": utilisateur[0], "last_conn": utilisateur[1], "nb_conn": utilisateur[2], "energy": utilisateur[3], "reg_date": "18/01/2023"})#prend la valeur 0(user) la valeur 1(derniere co) etc
+        print("donnee : ",data)
         # Table data
         '''data = [
             {"user": "exemple1", "last_conn": "20/01/2023", "nb_conn": "15", "energy": "1200", "reg_date": "18/01/2023"},
@@ -36,12 +37,14 @@ class AdminSpace(QMainWindow):
         ]'''
 
         self.tableWidget.setRowCount(len(data))
-        for i, row in enumerate(data): #renvoie les données data
-            self.tableWidget.setItem(i, 0, QTableWidgetItem(row["user"])) # nom de la colonne0
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(row["last_conn"]))# nom de la colonne 1
-            self.tableWidget.setItem(i, 2, QTableWidgetItem(row["nb_conn"])) #etc
-            self.tableWidget.setItem(i, 3, QTableWidgetItem(row["energy"]))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(row["reg_date"]))
+        for i in range(len(data)): #apprend les données du tableau
+         #renvoie les données data
+            self.tableWidget.setItem(i, 0, QTableWidgetItem(data[i]["user"])) # nom de la colonne0
+            print(i,data[i]["user"])
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(data[i]["last_conn"].strftime("%d/%m/%Y, %H:%M:%S")))# nom de la colonne 1
+            self.tableWidget.setItem(i, 2, QTableWidgetItem(str(data[i]["nb_conn"]))) #etc
+            self.tableWidget.setItem(i, 3, QTableWidgetItem(str(data[i]["energy"])))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(data[i]["reg_date"]))
             combo_box = QComboBox()
             combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur", "Réinitialiser stats"]) #choisir entre differentes option pour gerer utilisateur
             self.tableWidget.setCellWidget(i, 5, combo_box) #colonne gerere
@@ -68,7 +71,8 @@ class AdminSpace(QMainWindow):
 
 
     def remplir_tab(self): #combo box cette semaine
-        value = self.combo_box.currentText()
+        pass
+        '''value = self.combo_box.currentText()
         if value == "Cette semaine" :
             try:
                 mydb = mysql.connector.connect(
@@ -173,7 +177,7 @@ class AdminSpace(QMainWindow):
 
             except Error as e:
                 print("Error while connecting to MySQL", e)
-       # else :
+       # else :'''
 
 
 
@@ -191,11 +195,10 @@ class AdminSpace(QMainWindow):
             #print("Connected to MySQL Server version", db_Info)
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
-            query = f"SELECT email FROM utilisateur" #WHERE email = '{email}' AND mdp = password('{password}')" # interroge la bdd pour voir si les informations rentré ne sont pas sortis de nul part
+            query = f"SELECT email, datetime_fin, count(id_user), SUM(mesures) FROM utilisateur,session,releve_puissance WHERE session.id_user = utilisateur.id AND session.id = releve_puissance.id_session GROUP BY id_user"
             mycursor.execute(query)
 
             result = mycursor.fetchall()
-            print (result)
             mycursor.close()
             mydb.close()
             return result
