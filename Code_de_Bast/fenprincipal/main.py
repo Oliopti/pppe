@@ -234,7 +234,9 @@ class Manager :
             query = f"INSERT INTO pppe.session (id_user) VALUES ({resultat[2]});"
             mycursor.execute(query)
             mydb.commit()
-
+            query = "INSERT INTO releve_puissance(id_session,mesures) VALUES((SELECT MAX(id) FROM `session`),0)"
+            mycursor.execute(query)
+            mydb.commit()
             mycursor.close()
             mydb.close()
             print(query)
@@ -282,18 +284,6 @@ class Manager :
             self.session(resultat_login)
             self.loginwindow.close()
             self.adminspace.show()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def window():
