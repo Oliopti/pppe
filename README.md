@@ -1,2 +1,2 @@
 # pppe
-Projet Pédagogique de Production d'Energie
+Projet Pédagogique de Production d'Énergie
