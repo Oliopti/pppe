@@ -1,0 +1,664 @@
+1.2
+lxde-applications.menu
+19
+D/home/pi/.local/share/desktop-directories
+D/usr/share/fkms/desktop-directories
+D/usr/local/share/desktop-directories
+D/usr/share/raspi-ui-overrides/desktop-directories
+D/usr/share/desktop-directories
+D/usr/share/gdm/desktop-directories
+D/var/lib/menu-xdg/desktop-directories
+D/home/pi/.local/share/applications
+D/usr/share/fkms/applications
+D/usr/local/share/applications
+D/usr/share/raspi-ui-overrides/applications
+D/usr/share/applications
+D/usr/share/gdm/applications
+D/var/lib/menu-xdg/applications
+D/etc/xdg/menus/applications-merged
+D/home/pi/.config/menus/applications-merged
+F/home/pi/.config/menus/lxde-applications.menu
+F/etc/xdg/menus/lxde-applications.menu
+F/etc/xdg/menus/debian-menu.menu
+MATE;
++Applications
+Applications
+Applications
+applications-other
+lxde-menu-applications.directory
+4
+0
++Accessories
+Accessories
+Desktop accessories
+applications-accessories
+lxde-utility.directory
+4
+0
+-xarchiver.desktop
+Archiver
+Create and access archive files
+xarchiver.png
+
+10
+Archive manager
+xarchiver
+2
+0
+xarchiver
+
+GTK;Archiving;Utility
+
+-galculator.desktop
+Calculator
+Perform simple and scientific calculations
+galculator
+
+10
+
+galculator
+2
+0
+galculator
+
+Utility
+
+-pcmanfm.desktop
+File Manager
+Browse the file system and manage the files
+system-file-manager
+
+10
+File Manager
+pcmanfm %U
+2
+0
+pcmanfm
+
+FileManager;Utility;Core;GTK
+
+-rpi-imager.desktop
+Imager
+Raspberry Pi Imager
+rpi-imager
+
+11
+
+rpi-imager
+0
+0
+
+
+Utility
+
+-qpdfview.desktop
+PDF Viewer
+Viewer for PDF files
+xpdf
+
+11
+PDF Viewer
+qpdfview --unique %F
+0
+0
+qpdfview
+
+Viewer;Utility
+viewer,document,presentation,pdf,ps,djvu
+-xpdf.desktop
+PDF Viewer
+Viewer for PDF files
+xpdf
+
+10
+PDF viewer
+xpdf
+0
+0
+xpdf
+
+Viewer;Utility
+
+-agnostics.desktop
+Raspberry Pi Diagnostics
+Test the Raspberry Pi hardware
+rpi
+
+11
+Raspberry Pi Diagnostics
+agnostics
+2
+0
+
+
+Utility
+
+-piclone.desktop
+SD Card Copier
+Copy SD cards and USB devices
+media-removable
+
+11
+SD Card Copier
+env SUDO_ASKPASS=/usr/lib/piclone/pwdpic.sh sudo -AE dbus-launch piclone
+2
+0
+
+
+Utility
+
+-lxtask.desktop
+Task Manager
+Manages running processes
+utilities-system-monitor
+
+10
+Process manager
+lxtask
+2
+0
+lxtask
+
+GTK;Utility;Monitor
+
+-lxterminal.desktop
+Terminal
+Command-line terminal
+lxterminal
+
+10
+Terminal
+lxterminal
+2
+0
+lxterminal
+
+GTK;Utility;TerminalEmulator
+
+-leafpad.desktop
+Text Editor
+Simple text editor
+accessories-text-editor
+
+10
+
+leafpad %f
+0
+0
+leafpad
+
+GTK;Utility;TextEditor
+
+-mousepad.desktop
+Text Editor
+Simple text editor
+accessories-text-editor
+
+10
+
+mousepad %F
+2
+0
+mousepad
+
+GTK;Utility;TextEditor
+
+-vim.desktop
+Vim
+Edit text files
+gvim
+
+11
+Text Editor
+vim %F
+1
+0
+vim
+
+Utility;TextEditor
+Text,editor
+
++Games
+Games
+Games and Amusements
+applications-games
+lxde-game.directory
+4
+0
+-minecraft-pi.desktop
+Minecraft Pi
+Fun with Blocks
+/usr/share/pixmaps/minecraft-pi.png
+
+10
+
+minecraft-pi
+2
+0
+minecraft-pi
+
+Application;Game
+
+
++Graphics
+Graphics
+Graphics applications
+applications-graphics
+lxde-graphics.directory
+4
+0
+-gpicview.desktop
+Image Viewer
+View your images easily
+gpicview
+
+10
+Image Viewer
+gpicview %f
+2
+0
+gpicview
+
+Graphics;Core;GTK;Viewer;RasterGraphics;2DGraphics;Photography
+
+
++Internet
+Internet
+Programs for Internet access such as web and e-mail
+applications-internet
+lxde-network.directory
+4
+0
+-chromium-browser.desktop
+Chromium Web Browser
+Access the Internet
+chromium-browser
+
+11
+Web Browser
+chromium-browser %U
+2
+0
+
+
+Network;WebBrowser
+
+-claws-mail.desktop
+Claws Mail
+Lightweight and Fast GTK+ based Mail Client
+mail
+
+10
+E-mail client
+claws-mail %u
+2
+0
+claws-mail
+
+Network;Email
+lightweight,fast,gui,extensible,plugin,pop,pop3,imap,imap4,nntp,news
+
++Office
+Office
+Office Applications
+applications-office
+lxde-office.directory
+4
+0
+-libreoffice-draw.desktop
+LibreOffice Draw
+Create and edit drawings, flow charts and logos using Draw.
+libreoffice-draw
+
+10
+Drawing Program
+libreoffice --draw %U
+2
+0
+libreoffice
+
+Office;FlowChart;2DGraphics;VectorGraphics
+Vector,Schema,Diagram,Layout,OpenDocument Graphics,Microsoft Publisher,Corel Draw,cdr,odg,svg
+-libreoffice-math.desktop
+LibreOffice Math
+Create and edit scientific formulae and equations using Math.
+libreoffice-math
+
+10
+Formula Editor
+libreoffice --math %U
+2
+0
+libreoffice
+
+Office;Spreadsheet;Science;Math
+Equation,OpenDocument Formula,Formula,odf,MathML
+
++Other
+Other
+Applications that do not fit in other categories
+applications-other
+lxde-other.directory
+4
+0
+-rp-bookshelf.desktop
+Bookshelf
+Download and read Raspberry Pi Press publications
+bookshelf
+
+11
+Bookshelf
+rp-bookshelf
+2
+0
+
+
+Help
+
+-debian-reference-common.desktop
+Debian Reference
+Debian Reference Guide
+debian-reference.png
+
+10
+
+debian-reference
+0
+0
+debian-reference
+
+Help
+
+-raspi_getstart.desktop
+Get Started
+
+rpi
+
+10
+
+x-www-browser https://rpf.io/raspbian-getstarted
+2
+0
+/usr/bin/x-www-browser
+
+Help
+
+-help.desktop
+Help
+Link to help pages
+rpi
+
+10
+
+x-www-browser https://rpf.io/raspbian-help
+0
+0
+/usr/bin/x-www-browser
+
+Help
+
+-raspi_resources.desktop
+Projects
+
+rpi
+
+10
+
+x-www-browser https://rpf.io/raspbian-projects
+2
+0
+/usr/bin/x-www-browser
+
+Help
+
+
++Development
+Programming
+Tools for software development
+applications-development
+lxde-development.directory
+4
+0
+-bluej.desktop
+BlueJ Java IDE
+A simple powerful Java IDE
+bluej
+
+10
+
+bluej
+0
+0
+bluej
+
+Application;Development
+
+-geany.desktop
+Geany Programmer's Editor
+A fast and lightweight IDE using GTK2
+geany
+
+10
+Integrated Development Environment
+geany %F
+2
+0
+geany
+
+GTK;Development;IDE
+
+-greenfoot.desktop
+Greenfoot Java IDE
+A simple Java IDE and animation framework
+greenfoot
+
+10
+
+greenfoot
+0
+0
+greenfoot
+
+Application;Development
+
+-idle-python3.7.desktop
+Python 3 (IDLE)
+Integrated development environment for Python 3
+python
+
+10
+
+/usr/bin/idle-python3.7
+2
+0
+/usr/bin/idle-python3.7
+
+Application;Development
+
+-idle3.desktop
+Python 3 (IDLE)
+Integrated development environment for Python 3
+python
+
+10
+
+/usr/bin/idle3
+2
+0
+/usr/bin/idle3
+
+Application;Development
+
+-scratch.desktop
+Scratch
+Programming system and content development tool
+scratch
+
+10
+
+scratch
+0
+0
+scratch
+
+Application;Development
+
+-org.thonny.Thonny.desktop
+Thonny
+Python IDE for beginners
+thonny
+
+11
+Python IDE
+/usr/bin/thonny %F
+0
+0
+
+
+Development;IDE
+programming,education
+
++Multimedia
+Sound & Video
+Multimedia menu
+applications-multimedia
+lxde-audio-video.directory
+4
+0
+-vlc.desktop
+VLC Media Player
+Multimedia player for audio and video files and streams
+vlc
+
+10
+Media player
+/usr/bin/vlc --started-from-file %U
+0
+0
+/usr/bin/vlc
+
+AudioVideo;Player;Recorder
+Player,Capture,DVD,Audio,Video,Server,Broadcast
+
+-
++DesktopSettings
+Preferences
+Personal preferences
+preferences-desktop
+lxde-settings.directory
+4
+0
+-pi-packages.desktop
+Add / Remove Software
+Add or remove software installed on the system
+system-software-install
+
+11
+
+pi-packages
+2
+-5
+
+
+GNOME;GTK;System;Settings;PackageManager
+Updates,Upgrade,Sources,Repositories,Preferences,Install,Store
+-pipanel.desktop
+Appearance Settings
+Configure the appearance of the desktop and windows
+preferences-desktop-theme
+
+11
+Appearance Settings
+env SUDO_ASKPASS=/usr/lib/pipanel/pwdpip.sh pipanel
+2
+0
+
+
+Settings;DesktopSettings;GTK;X-LXDE-Settings
+
+-alacarte.desktop
+Main Menu Editor
+Add or remove applications from the main menu
+alacarte
+
+11
+
+alacarte
+2
+-5
+
+
+GNOME;Settings;DesktopSettings
+
+-lxinput.desktop
+Mouse and Keyboard Settings
+Configure mouse, keyboard, and other input devices
+preferences-desktop-peripherals
+
+11
+
+lxinput
+2
+-47
+lxinput
+
+GTK;Settings;HardwareSettings;X-LXDE-Settings
+
+-system-config-printer.desktop
+Print Settings
+Configure printers
+printer
+
+11
+Print Settings
+system-config-printer
+2
+0
+
+
+System;Settings;HardwareSettings;Printing;GTK
+
+-rc_gui.desktop
+Raspberry Pi Configuration
+Configure Raspberry Pi system
+rpi
+
+11
+Raspberry Pi Configuration
+env SUDO_ASKPASS=/usr/lib/rc-gui/pwdrcg.sh sudo -AE rc_gui
+2
+0
+
+
+Settings;DesktopSettings;GTK;X-LXDE-Settings
+
+-rp-prefapps.desktop
+Recommended Software
+Install additional programs recommended for use on the Pi
+rpi
+
+11
+Recommended Software
+env SUDO_ASKPASS=/usr/lib/rp-prefapps/pwdrpp.sh sudo -AE rp-prefapps
+2
+0
+
+
+Settings;DesktopSettings;GTK;X-LXDE-Settings
+
+-arandr.desktop
+Screen Configuration
+
+computer
+
+8
+Screen Settings
+env SUDO_ASKPASS=/usr/lib/arandr/pwdarandr.sh sudo -AE arandr
+2
+0
+
+
+Settings;HardwareSettings
+
+
+
