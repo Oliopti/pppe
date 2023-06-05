@@ -4,7 +4,7 @@ def insertion(mesures):
     try:
         # Connection au serveur MariaDB
         connection = mysql.connector.connect(
-            host='192.168',
+            host='192.168.0.108',
             database='pppe',
             user='admin',
             password='admin'
