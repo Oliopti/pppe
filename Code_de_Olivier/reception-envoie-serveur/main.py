@@ -82,9 +82,3 @@ while True:
     # Gestion des exceptions en cas d'erreur
     except:
         print('erreur while true')
-
-
-
-
-
-
