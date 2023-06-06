@@ -21,7 +21,7 @@ ser.isOpen()
 while True:
     try :
         res=ser.read(6)
-        print(res)
+        print(res.decode())
         time.sleep(1)
     except:
         print('erreur')
