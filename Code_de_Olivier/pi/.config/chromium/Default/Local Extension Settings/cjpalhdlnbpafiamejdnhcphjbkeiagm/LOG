@@ -1,0 +1,17 @@
+2023/05/03-14:40:51.006 b02 Creating DB /home/pi/.config/chromium/Default/Local Extension Settings/cjpalhdlnbpafiamejdnhcphjbkeiagm since it was missing.
+2023/05/03-14:40:51.799 b02 Delete type=3 #1
+2023/05/03-14:41:00.477 b03 Level-0 table #5: started
+2023/05/03-14:41:00.694 b03 Level-0 table #5: 1547684 bytes OK
+2023/05/03-14:41:00.705 b03 Delete type=0 #3
+2023/05/03-14:41:31.226 b03 Level-0 table #7: started
+2023/05/03-14:41:31.460 b03 Level-0 table #7: 1729691 bytes OK
+2023/05/03-14:41:31.772 b03 Delete type=0 #4
+2023/05/03-14:41:35.089 b03 Level-0 table #9: started
+2023/05/03-14:41:35.332 b03 Level-0 table #9: 1853744 bytes OK
+2023/05/03-14:41:35.721 b03 Delete type=0 #6
+2023/05/03-14:41:52.558 b03 Level-0 table #11: started
+2023/05/03-14:41:52.789 b03 Level-0 table #11: 1674125 bytes OK
+2023/05/03-14:41:53.018 b03 Delete type=0 #8
+2023/05/03-14:44:07.645 b03 Level-0 table #13: started
+2023/05/03-14:44:08.144 b03 Level-0 table #13: 2947367 bytes OK
+2023/05/03-14:44:08.552 b03 Delete type=0 #10
