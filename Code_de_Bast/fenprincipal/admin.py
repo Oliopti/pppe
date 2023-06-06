@@ -195,13 +195,13 @@ class AdminSpace(QMainWindow):
                 email =self.tableWidget.itemAt(7,1)
                 #delete_session_req = f"DELETE FROM session WHERE id_user=(SELECT id from utilisateur WHERE email = {email})"
                 #demande = f"DELETE FROM utilisateur WHERE email = {email} "
-                print(demande)
+                '''print(demande)
                 mycursor.execute(demande)
                 mydb.cursor()
 
                 mycursor.close()
                 mydb.close()
-                print(demande)
+                print(demande)'''
 
 
 
