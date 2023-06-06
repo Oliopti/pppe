@@ -3,31 +3,42 @@ import serial
 
 import mysql.connector
 
-
-# configure the serial connections (the parameters differs on the device you are connecting to)
+# Configuration de la connexion série
 ser = serial.Serial(
-    port='/dev/ttyUSB0',
-    baudrate=9600,
-    parity=serial.PARITY_NONE,
-    stopbits=serial.STOPBITS_ONE,
-    bytesize=serial.EIGHTBITS,
-    timeout=5
+    port='/dev/ttyUSB0',                  # Port série à utiliser
+    baudrate=9600,                        # Vitesse de communication en bauds
+    parity=serial.PARITY_NONE,            # Parité (aucune parité)
+    stopbits=serial.STOPBITS_ONE,         # Bits d'arrêt (1 bit)
+    bytesize=serial.EIGHTBITS,            # Taille des octets de données (8 bits)
+    timeout=5                             # Délai d'attente pour la lecture de données (5 secondes)
 )
 
+# Fermeture du port série s'il est déjà ouvert
 if ser.isOpen():
     ser.close()
+
+# Ouverture du port série
 ser.open()
+
+# Vérification si le port série est ouvert
 ser.isOpen()
 
-
+# Boucle principale pour la lecture continue de données
 while True:
-    try :
-        res=ser.read(6)
+    try:
+        # Lecture de 6 octets depuis le port série
+        res = ser.read(6)
+
+        # Décodage des données lues en une chaîne de caractères lisible
         print(res.decode())
+
+        # Attente de 1 seconde avant la prochaine lecture
         time.sleep(1)
+
+    # Gestion des exceptions en cas d'erreur
     except:
         print('erreur')
-        
+
 
 
 
@@ -35,7 +46,7 @@ def insertion(mesures):
     try:
         # Connection au serveur MariaDB
         connection = mysql.connector.connect(
-            host='192.168.0.108',
+            host='172.20.10.26',
             database='pppe',
             user='admin',
             password='admin'
@@ -70,5 +81,5 @@ def insertion(mesures):
     return
 
 # Appel de la fonction insertion avec la valeur 321
-insertion(321)
+insertion(res)
 
