@@ -33,7 +33,7 @@ while True:
         print(res.decode())
 
         # Attente de 1 seconde avant la prochaine lecture
-        time.sleep(1)
+        time.sleep(5)
 
     # Gestion des exceptions en cas d'erreur
     except:
@@ -46,6 +46,7 @@ def insertion(mesures):
     try:
         # Connection au serveur MariaDB
         connection = mysql.connector.connect(
+            #host = '192.168.0.108',
             host='172.20.10.26',
             database='pppe',
             user='admin',
