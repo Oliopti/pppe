@@ -179,6 +179,34 @@ class AdminSpace(QMainWindow):
                 print("Error while connecting to MySQL", e)
        # else :'''
 
+    def sup_compte(self):
+        value = QComboBox
+        if value == "Supprimer compte utilisateur":
+            print(value)
+            try:
+                mydb = mysql.connector.connect(
+                    host="172.20.10.1",
+                    user="bastien",
+                    password="123456",
+                    database="pppe"
+                )
+                print("Try to connected to MySQL Server")
+                mycursor = mydb.cursor()
+                email =self.tableWidget.itemAt(7,1)
+                #delete_session_req = f"DELETE FROM session WHERE id_user=(SELECT id from utilisateur WHERE email = {email})"
+                #demande = f"DELETE FROM utilisateur WHERE email = {email} "
+                print(demande)
+                mycursor.execute(demande)
+                mydb.cursor()
+
+                mycursor.close()
+                mydb.close()
+                print(demande)
+
+
+
+            except Error as e:
+                print("Error while connecting to MySQL", e)
 
 
 
@@ -195,7 +223,7 @@ class AdminSpace(QMainWindow):
             #print("Connected to MySQL Server version", db_Info)
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
-            query = f"SELECT email, datetime_fin, count(id_user), SUM(mesures) FROM utilisateur,session,releve_puissance WHERE session.id_user = utilisateur.id AND session.id = releve_puissance.id_session GROUP BY id_user"
+            query = f"SELECT email, datetime_fin, count(id_user), SUM(mesures) FROM utilisateur,session,releve_puissance WHERE session.id_user = utilisateur.id AND session.id = releve_puissance.id_session GROUP BY id_user" #affiche les infos des utilisateurs inscris
             mycursor.execute(query)
 
             result = mycursor.fetchall()

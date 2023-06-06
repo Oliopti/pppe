@@ -231,10 +231,10 @@ class Manager :
             # Insertion des données dans la table "utilisateur"
 
             mycursor = mydb.cursor()
-            query = f"INSERT INTO pppe.session (id_user) VALUES ({resultat[2]});"
+            query = f"INSERT INTO pppe.session (id_user) VALUES ({resultat[2]});" #ajoute un nbr de connexion en +
             mycursor.execute(query)
             mydb.commit()
-            query = "INSERT INTO releve_puissance(id_session,mesures) VALUES((SELECT MAX(id) FROM `session`),0)"
+            query = "INSERT INTO releve_puissance(id_session,mesures) VALUES((SELECT MAX(id) FROM `session`),0)" #ajoute un id de session en +
             mycursor.execute(query)
             mydb.commit()
             mycursor.close()
@@ -258,7 +258,7 @@ class Manager :
             # Insertion des données dans la table "utilisateur"
 
             mycursor = mydb.cursor()
-            query = f"UPDATE session set datetime_fin = NOW() WHERE datetime_debut = datetime_fin;"
+            query = f"UPDATE session set datetime_fin = NOW() WHERE datetime_debut = datetime_fin;" #met la date actuelle à la date de déconnexion
             mycursor.execute(query)
             mydb.commit()
 
