@@ -33,19 +33,9 @@ while True:
         res=res.split("-")
         print("Signal recu :",res)
         # Appel de la fonction insertion avec la valeur 321
-        insertion(res[1])
+        insertion(res)
 
-    if res == '0':
-     
-        mySql_insert_query = f"INSERT INTO mesure_batterie(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures}, timestamp)"
-
-    if res == '1':
-     
-        mySql_insert_query = f"INSERT INTO panneaux_solaire(id_session, mesures) VALUES({mesures}, timestamp )"
-
-    if res == '2':
-     
-        mySql_insert_query = f"INSERT INTO releve_puissance(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures})"
+       
 
 
         # Attente de 1 seconde avant la prochaine lecture
@@ -72,7 +62,20 @@ while True:
             cursor = connection.cursor()
 
             # Construction de la requête d'insertion avec la valeur fournie
-            mySql_insert_query = f"INSERT INTO releve_puissance(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures})"
+
+            if mesures[0] == '0':
+    
+                mySql_insert_query = f"INSERT INTO mesure_batterie(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures}, timestamp)"
+
+            if mesures[0] == '1':
+    
+                mySql_insert_query = f"INSERT INTO panneaux_solaire(id_session, mesures) VALUES({mesures}, timestamp)"
+
+            if mesures[0] == '2':
+    
+                mySql_insert_query = f"INSERT INTO releve_puissance(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures})"
+
+
 
             print(mySql_insert_query)
 
