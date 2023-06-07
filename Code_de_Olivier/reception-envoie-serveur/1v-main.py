@@ -66,7 +66,7 @@ while True:
 
             if mesures[0] == '0':
     
-                mySql_insert_query = f"INSERT INTO mesure_batterie(id_batterie, tension, timestamp) VALUES((SELECT MAX(id) FROM session), {mesures[1]}, timestamp)"
+                mySql_insert_query = f"INSERT INTO mesure_batterie(id_batterie, tension, timestamp) VALUES((SELECT MAX(id) FROM batterie), {mesures[1]}, timestamp)"
 
             elif mesures[0] == '1':
     
