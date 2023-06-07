@@ -218,6 +218,7 @@ class Manager :
             print("Error while connecting to MySQL", e)
 
     def session(self, resultat):
+        print("conn")
         try:
             mydb = mysql.connector.connect(
                 host="172.20.10.1",
@@ -245,6 +246,7 @@ class Manager :
         except Error as e:
             print("Error while connecting to MySQL", e)
     def session_fini(self):
+        print("deconn")
         try:
             mydb = mysql.connector.connect(
                 host="172.20.10.1",

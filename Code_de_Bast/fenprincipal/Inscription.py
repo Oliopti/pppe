@@ -25,7 +25,7 @@ class SignupWindow(QMainWindow):
 
         self.password_label = QLabel("Mot de passe :", self)
         self.password_edit = QLineEdit(self)
-        self.password_edit.setEchoMode(QLineEdit.Password)
+        self.password_edit.setEchoMode(QLineEdit.Password) #met des points au mdp
 
         # Création du bouton
         self.signup_button = QPushButton("Je m'inscris", self)

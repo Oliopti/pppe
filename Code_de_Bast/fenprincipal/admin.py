@@ -47,6 +47,7 @@ class AdminSpace(QMainWindow):
             self.tableWidget.setItem(i, 4, QTableWidgetItem(data[i]["reg_date"]))
             combo_box = QComboBox()
             combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur", "Réinitialiser stats"]) #choisir entre differentes option pour gerer utilisateur
+            #self.combo_box.currentIndexChanged.connect(self.sup_compte)
             self.tableWidget.setCellWidget(i, 5, combo_box) #colonne gerere
 
         # Combo box
@@ -67,6 +68,7 @@ class AdminSpace(QMainWindow):
         self.setStyleSheet("background-color :lightblue")  # couleur de fond (ici bleu claire)
         # self.btn_faire_velo.clicked.connect(self.ouvrir_fenetre_velo)
         # self.btn_deconnexion.clicked.connect(self.deconnecter)
+        self.sup_compte()
 
 
 
@@ -179,7 +181,7 @@ class AdminSpace(QMainWindow):
                 print("Error while connecting to MySQL", e)
        # else :'''
 
-    def sup_compte(self):
+    def sup_compte(self): #supprimer un compte dans fenêtre admin
         value = QComboBox
         if value == "Supprimer compte utilisateur":
             print(value)
@@ -192,21 +194,24 @@ class AdminSpace(QMainWindow):
                 )
                 print("Try to connected to MySQL Server")
                 mycursor = mydb.cursor()
-                email =self.tableWidget.itemAt(7,1)
-                #delete_session_req = f"DELETE FROM session WHERE id_user=(SELECT id from utilisateur WHERE email = {email})"
-                #demande = f"DELETE FROM utilisateur WHERE email = {email} "
-                '''print(demande)
+                email =self.tableWidget.item(7,1)
+                print(email.data(0).toString())
+                delete_session_req = f"DELETE FROM session WHERE id_user=(SELECT id from utilisateur WHERE email = {email})"
+                demande = f"DELETE FROM utilisateur WHERE email = {email} "
+                print(demande)
                 mycursor.execute(demande)
                 mydb.cursor()
 
                 mycursor.close()
                 mydb.close()
-                print(demande)'''
+                print(demande)
 
 
 
             except Error as e:
                 print("Error while connecting to MySQL", e)
+
+
 
 
 
