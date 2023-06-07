@@ -33,7 +33,8 @@ while True:
         res=res.split("-")
         print("Signal recu :",res)
         # Appel de la fonction insertion avec la valeur 321
-        insertion(res)
+        if len(res)==2:
+            insertion(res)
 
        
 
@@ -65,15 +66,15 @@ while True:
 
             if mesures[0] == '0':
     
-                mySql_insert_query = f"INSERT INTO mesure_batterie(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures}, timestamp)"
+                mySql_insert_query = f"INSERT INTO mesure_batterie(id_batterie, tension, timestamp) VALUES((SELECT MAX(id) FROM session), {mesures[1]}, timestamp)"
 
-            if mesures[0] == '1':
+            elif mesures[0] == '1':
     
-                mySql_insert_query = f"INSERT INTO panneaux_solaire(id_session, mesures) VALUES({mesures}, timestamp)"
+                mySql_insert_query = f"INSERT INTO panneaux_solaire(tension, timestamp) VALUES({mesures[1]}, timestamp)"
 
-            if mesures[0] == '2':
+            elif mesures[0] == '2':
     
-                mySql_insert_query = f"INSERT INTO releve_puissance(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures})"
+                mySql_insert_query = f"INSERT INTO releve_puissance(id_session, mesures) VALUES((SELECT MAX(id) FROM session), {mesures[1]})"
 
 
 
@@ -95,5 +96,5 @@ while True:
         except mysql.connector.Error as error:
             print("Échec de l'insertion d'un enregistrement dans la table :", error)
             return False
-        return
-
+        return True
+    
