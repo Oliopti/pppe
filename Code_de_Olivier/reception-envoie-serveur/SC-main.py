@@ -23,7 +23,7 @@ while True:
         res=res.decode()
         res=res.split("-")
         print("Signal recu :",res)
-        
+
         if len(res)==2:
             insertion(res)
        

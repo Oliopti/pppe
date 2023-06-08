@@ -13,7 +13,7 @@ ser = serial.Serial(
 
 if ser.isOpen():  # Vérifie si la connexion série est déjà ouverte
     ser.close()  # Ferme la connexion série
-    
+
 ser.open()  # Ouvre la connexion série
 ser.isOpen()  # Vérifie si la connexion série est ouverte
 
@@ -68,3 +68,4 @@ while True:  # Boucle principale infinie
             return False  # Retourne False en cas d'échec
 
         return True  # Retourne True en cas de succès
+    
