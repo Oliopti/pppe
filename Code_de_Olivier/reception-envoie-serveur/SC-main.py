@@ -8,7 +8,7 @@ ser = serial.Serial(
     parity=serial.PARITY_NONE,
     stopbits=serial.STOPBITS_ONE,
     bytesize=serial.EIGHTBITS,
-    timeout=5
+    timeout=5                             
 )
 
 if ser.isOpen():
@@ -24,6 +24,7 @@ while True:
         print("Signal recu :",res)
         if len(res)==2:
             insertion(res)
+       
         time.sleep(1)
 
     except:
