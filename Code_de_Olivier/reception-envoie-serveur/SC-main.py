@@ -13,6 +13,7 @@ ser = serial.Serial(
 
 if ser.isOpen():
     ser.close()
+
 ser.open()
 ser.isOpen()
 
@@ -22,6 +23,7 @@ while True:
         res=res.decode()
         res=res.split("-")
         print("Signal recu :",res)
+        
         if len(res)==2:
             insertion(res)
        
@@ -57,8 +59,10 @@ while True:
             print("Exécuter la commande :", mySql_insert_query)
             cursor.close()
             print("Enregistrement inséré avec succès dans la table releve_puissance")
+        
         except mysql.connector.Error as error:
             print("Échec de l'insertion d'un enregistrement dans la table :", error)
             return False
+        
         return True
     
