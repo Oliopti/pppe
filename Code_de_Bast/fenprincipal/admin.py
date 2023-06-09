@@ -228,7 +228,7 @@ class AdminSpace(QMainWindow):
             #print("Connected to MySQL Server version", db_Info)
             # Insertion des données dans la table "utilisateur"
             mycursor = mydb.cursor()
-            query = f"SELECT email, datetime_fin, count(id_user), SUM(mesures) FROM utilisateur,session,releve_puissance WHERE session.id_user = utilisateur.id AND session.id = releve_puissance.id_session GROUP BY id_user" #affiche les infos des utilisateurs inscris
+            query = f"SELECT utilisateur.email,MAX(session.datetime_fin),COUNT(*),SUM(releve_puissance.mesures) FROM session,utilisateur,releve_puissance WHERE utilisateur.id = session.id_user AND session.id=releve_puissance.id_session GROUP BY email #affiche les infos des utilisateurs inscris"
             mycursor.execute(query)
 
             result = mycursor.fetchall()
