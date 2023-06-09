@@ -41,10 +41,10 @@ class AdminSpace(QMainWindow):
          #renvoie les données data
             self.tableWidget.setItem(i, 0, QTableWidgetItem(data[i]["user"])) # nom de la colonne0
             print(i,data[i]["user"])
-            self.tableWidget.setItem(i, 1, QTableWidgetItem(data[i]["last_conn"].strftime("%d/%m/%Y, %H:%M:%S")))# nom de la colonne 1
+            self.tableWidget.setItem(i, 1, QTableWidgetItem(data[i]["last_conn"].strftime("%d/%m/%Y, %H:%M:%S")))# nom de la colonne 1 ; jour mois année et heure minute seconde
             self.tableWidget.setItem(i, 2, QTableWidgetItem(str(data[i]["nb_conn"]))) #etc
             self.tableWidget.setItem(i, 3, QTableWidgetItem(str(data[i]["energy"])))
-            self.tableWidget.setItem(i, 4, QTableWidgetItem(data[i]["reg_date"]))
+            self.tableWidget.setItem(i, 4, QTableWidgetItem(data[i]["reg_date"])) #date d'inscription
             combo_box = QComboBox()
             combo_box.addItems(["--", "Bloquer l'utilisateur", "Supprimer compte utilisateur", "Réinitialiser stats"]) #choisir entre differentes option pour gerer utilisateur
             #self.combo_box.currentIndexChanged.connect(self.sup_compte)
@@ -73,7 +73,7 @@ class AdminSpace(QMainWindow):
 
 
     def remplir_tab(self): #combo box cette semaine
-        pass
+        pass #le pass évite les erreurs de compilations
         '''value = self.combo_box.currentText()
         if value == "Cette semaine" :
             try:
@@ -181,7 +181,7 @@ class AdminSpace(QMainWindow):
                 print("Error while connecting to MySQL", e)
        # else :'''
 
-    def sup_compte(self): #supprimer un compte dans fenêtre admin
+    def sup_compte(self): #supprimer un compte dans fenêtre admin (pas au point)
         value = QComboBox
         if value == "Supprimer compte utilisateur":
             print(value)
@@ -215,7 +215,7 @@ class AdminSpace(QMainWindow):
 
 
 
-    def cherche_donne(self): #COLONNE email du tableau
+    def cherche_donne(self): #affiche les différentes infos des users
         try:
             mydb = mysql.connector.connect(
                 host="172.20.10.1",
@@ -239,7 +239,7 @@ class AdminSpace(QMainWindow):
         except Error as e:
             print("Error while connecting to MySQL", e)
 
-    def session(self):
+    def session(self): #fonction off
         try:
             mydb = mysql.connector.connect(
                 host="172.20.10.1",
@@ -266,7 +266,7 @@ class AdminSpace(QMainWindow):
 
 
 
-    def tableau_admin(self): #bascule vers la page admin
+    def tableau_admin(self): #bascule vers la page admin --------- Fonction off
         tabl_result = self.cherche_donne() #se connecte à la BDD
 
         if tabl_result==1 : #si role est introuvable

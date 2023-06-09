@@ -38,7 +38,7 @@ class StatWindow(QMainWindow):
 
 
         # Créer une étiquette pour afficher une image
-        qpixmap = QPixmap("./image/logostats.jpg")
+        qpixmap = QPixmap("./image/logostats.jpg") #répertoire ou se trouve l'image
         image_label = QLabel(self)
         image_label.setFixedSize(500 , 400)
         image_label.setPixmap(qpixmap.scaled(600 , 600 , Qt.KeepAspectRatio))

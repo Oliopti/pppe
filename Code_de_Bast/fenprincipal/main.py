@@ -74,12 +74,12 @@ class Manager :
         email = self.loginwindow.email_edit.text()
         password = self.loginwindow.password_edit.text()
 
-        if email == "adminpppe@gmail.com" and password == "admin123":
+        if email == "adminpppe@gmail.com" and password == "admin123": #test pour utilisateur admin
             self.loginwindow.close()
 
             self.adminspace.show()
             print(1)
-        elif email == "error" and password == "error":
+        elif email == "error" and password == "error": #test msg erreur
             self.loginwindow.close()
             # self.bvn.close()
             self.infowindow.show()
@@ -245,7 +245,8 @@ class Manager :
 
         except Error as e:
             print("Error while connecting to MySQL", e)
-    def session_fini(self):
+
+    def session_fini(self): #lorsqu'on se déconnecte
         print("deconn")
         try:
             mydb = mysql.connector.connect(
