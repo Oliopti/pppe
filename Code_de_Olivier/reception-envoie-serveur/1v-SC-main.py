@@ -35,10 +35,10 @@ while True:
     def insertion(mesures):
         try:
             connection = mysql.connector.connect(
-                host='172.20.10.26',
+                host='192.168.0.104',
                 database='pppe',
                 user='admin',
-                password='admin'
+                password='123456'
             )
 
             print("Essai de connexion au serveur MySQL")

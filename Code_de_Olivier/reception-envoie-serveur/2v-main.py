@@ -49,7 +49,7 @@ while True:
             # Connection au serveur MariaDB
             connection = mysql.connector.connect(
                 #host = '192.168.0.108',
-                host='localhost',
+                host='192.168.0.104',
                 database='pppe',
                 user='admin',
                 password='admin'
