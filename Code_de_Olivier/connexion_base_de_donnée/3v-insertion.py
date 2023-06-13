@@ -15,7 +15,7 @@ def insertion(mesures):
 
         # Création d'un curseur pour exécuter des requêtes SQL
         cursor = connection.cursor()
-        
+
         # Construction de la requête d'insertion avec la valeur fournie
         if mesures[0] == '0':
             mySql_insert_query = f"INSERT INTO mesure_batterie(id_batterie, tension, timestamp) VALUES((SELECT MAX(id) FROM batterie), {mesures[1]}, NOW())"
