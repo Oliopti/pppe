@@ -1,35 +1,29 @@
 import mysql.connector
+from mysql.connector import Error
 
-try:
-    connection = mysql.connector.connect(
-        host='192.168.0.104',
-        user='admin',
-        password='123456',
-        database='pppe'
-    )
 
-    print("Connexion au serveur MariaDB réussie")
+def get_db_info():
+    try:
+        # Connexion au serveur MariaDB
+        connection = mysql.connector.connect(
+            host='192.168.0.30',
+            database='pppe',
+            user="admin",
+            password="123456"
+        )
 
-    # Création d'un curseur pour exécuter les requêtes SQL
-    cursor = connection.cursor()
+        print("Essai de connexion au serveur MySQL")
 
-    # Exemple de requête SELECT pour récupérer des informations
-    query = 'SELECT * FROM utilisateur'
-    cursor.execute(query)
+        # Récupération des informations sur le serveur MySQL
+        db_Info = connection.get_server_info()
+        print("Connexion à la version du serveur MySQL :", db_Info)
 
-    # Récupération des résultats
-    results = cursor.fetchall()
+        # Fermeture de la connexion à la base de données
+        connection.close()
 
-    # Parcours des résultats
-    for row in results:
-        # Accès aux colonnes des résultats
-        col1 = row[0]
-        col2 = row[1]
-        # Faites ce que vous voulez avec les données récupérées
+    except Error as e:
+        print("Erreur lors de la connexion au serveur MySQL :", e)
 
-    # Fermeture du curseur et de la connexion à la base de données
-    cursor.close()
-    connection.close()
 
-except mysql.connector.Error as error:
-    print("Échec de la connexion au serveur MariaDB :", error)
+# Appel de la fonction pour récupérer les informations de la base de données
+get_db_info()

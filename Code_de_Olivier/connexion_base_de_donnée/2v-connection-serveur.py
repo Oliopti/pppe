@@ -4,10 +4,10 @@ def insertion(mesures):
     try:
         # Connection au serveur MariaDB
         connection = mysql.connector.connect(
-            host='192.168.0.108',
+            host='192.168.0.30',
             database='pppe',
             user='admin',
-            password='admin'
+            password='123456'
         )
 
         print("Essai de connexion au serveur MySQL")
@@ -32,12 +32,12 @@ def insertion(mesures):
         # Fermeture du curseur
         cursor.close()
 
-        print("Enregistrement inséré avec succès dans la table releve_puissance")
+        print("Enregistrement inséré avec succès ")
     except mysql.connector.Error as error:
         print("Échec de l'insertion d'un enregistrement dans la table :", error)
         return False
     return
 
-# Appel de la fonction insertion avec la valeur 321
-insertion(321)
+# Appel de la fonction insertion avec la valeur
+insertion(123456)
 

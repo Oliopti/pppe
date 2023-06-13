@@ -6,10 +6,10 @@ def insertion(mesures):
     try:
         # Connection au serveur MariaDB
 #        connection = mysql.connector.connect(host='172.20.10.26',
-        connection = mysql.connector.connect(host='192.168.0.108',
+        connection = mysql.connector.connect(host='192.168.0.30',
                                             database='pppe',
                                              user="admin",
-                                             password="admin")
+                                             password="123456")
 
         print("Essai de connexion au serveur MySQL")
 
