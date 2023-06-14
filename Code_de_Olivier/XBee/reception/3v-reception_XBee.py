@@ -26,3 +26,5 @@ while True:
 
     except:
         print('erreur while true')
+        
+        
