@@ -39,5 +39,5 @@ def insertion(mesures):
     return
 
 # Appel de la fonction insertion avec la valeur
-insertion(123456)
+insertion(1234)
 
